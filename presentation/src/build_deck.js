@@ -179,12 +179,50 @@ const chartBase = {
   }
 
   // =====================================================================
-  // 2. MOTIVATION: from intents to actions
+  // 2. THE TALK IN ONE SLIDE  (pattern borrowed from strong Interspeech orals: answer first)
+  // =====================================================================
+  {
+    const s = content({
+      tag: 'Overview', title: 'This talk in one slide',
+      notes: '[0:30] Here is the entire talk on one slide, so you know where we are going. ' +
+        'The question: can today\'s speech language models turn a spoken request into a correct, executable tool call under realistic acoustic conditions? ' +
+        'We built Audio2Tool to answer it: thirty thousand spoken queries over 152 tools, eight complexity tiers, 330 cloned voices and real noise. ' +
+        'And the answers, in one breath: picking the right tool is nearly solved for direct commands; getting the arguments right is not, and that is not an ASR problem; ' +
+        'composition, implicit intent and competing speakers are still open; and end-to-end models do not yet beat a strong cascade. The rest of the talk is the evidence.',
+    });
+    card(s, 0.6, 1.75, 5.6, 2.3, C.ink);
+    text(s, 'QUESTION', { x: 0.85, y: 1.9, w: 5.1, h: 0.3, fontSize: 12, bold: true, color: C.speak, charSpacing: 3 });
+    text(s, 'Can today\'s SpeechLMs turn a spoken request into a correct, executable tool call under realistic acoustic conditions?', { x: 0.85, y: 2.25, w: 5.1, h: 1.7, fontSize: 18, bold: true, color: C.white, lineSpacingMultiple: 1.1 });
+    card(s, 0.6, 4.2, 5.6, 2.5, C.tint);
+    text(s, 'WHAT WE BUILT', { x: 0.85, y: 4.35, w: 5.1, h: 0.3, fontSize: 12, bold: true, color: C.speakDark, charSpacing: 3 });
+    runs(s, [
+      { text: 'Audio2Tool. ', options: { bold: true } },
+      { text: '~30K spoken queries with gold tool calls · 152 tools in 3 domains · 8 complexity tiers · 330 cloned voices · real in-car and indoor noise · open-weight baselines: end-to-end SpeechLMs vs. Whisper cascades.', options: { color: C.ink2 } },
+    ], { x: 0.85, y: 4.7, w: 5.1, h: 1.9, fontSize: 15, lineSpacingMultiple: 1.15 });
+    text(s, 'WHAT WE FOUND', { x: 6.55, y: 1.75, w: 6, h: 0.3, fontSize: 12, bold: true, color: C.actDark, charSpacing: 3 });
+    const found = [
+      [I.check, C.speak, 'Tool selection nearly solved for direct commands', '92% tool accuracy for the best model on Tier 1'],
+      [I.warn, C.act, 'Argument grounding is the bottleneck (not ASR)', 'exact match ≤ 16%, even with gold transcripts'],
+      [I.layers, C.call, 'Composition, implicit intent, competing speakers', 'still open: 33–75% tool accuracy on Tiers 3–4 and 7–8'],
+      [I.scale, C.ink2, 'End-to-end does not yet beat a strong cascade', 'SpeechLMs pick tools better; text LLMs fill arguments better'],
+    ];
+    found.forEach(([ic, col, h, b], i) => {
+      const y = 2.12 + i * 1.15;
+      card(s, 6.55, y, 6.18, 1.03, C.tint);
+      iconCircle(s, 6.78, y + 0.2, 0.63, col, ic);
+      text(s, h, { x: 7.6, y: y + 0.1, w: 5.05, h: 0.4, fontSize: 14, bold: true });
+      text(s, b, { x: 7.6, y: y + 0.5, w: 5.05, h: 0.45, fontSize: 12.5, color: C.ink2 });
+    });
+    text(s, 'The rest of the talk is the evidence.', { x: 6.55, y: 6.65, w: 6.18, h: 0.35, fontSize: 13, italic: true, color: C.muted });
+  }
+
+  // =====================================================================
+  // 3. MOTIVATION: from intents to actions
   // =====================================================================
   {
     const s = content({
       tag: 'Motivation', title: 'Voice assistants are becoming agents: the output is now an action',
-      notes: '[0:30] For a decade, spoken language understanding meant classification. ASR produced text, an NLU module produced an intent and a few slots, and hand-written logic did the rest. ' +
+      notes: '[1:00] For a decade, spoken language understanding meant classification. ASR produced text, an NLU module produced an intent and a few slots, and hand-written logic did the rest. ' +
         'Speech language models change the contract. The model now emits the action itself: an API call with typed arguments. ' +
         'That raises the bar for correctness. The call must be schema-valid, every argument must be right, and for multi-step requests the order matters. ' +
         'A near-miss is not partially right. It is a wrong action, in a car, at highway speed.',
@@ -233,7 +271,7 @@ const chartBase = {
   {
     const s = content({
       tag: 'Motivation', title: 'Speech adds failure modes that text benchmarks never see',
-      notes: '[1:30] And speech adds failure modes that text never sees. "Fifteen" and "fifty" are one phoneme apart, but one is a comfortable cabin and the other is not. ' +
+      notes: '[2:00] And speech adds failure modes that text never sees. "Fifteen" and "fifty" are one phoneme apart, but one is a comfortable cabin and the other is not. ' +
         'Real cabins have engine, wind and HVAC noise. People repair themselves mid-utterance: "set an alarm for seven... wait, make it eight". ' +
         'And there are other voices in the room: a podcast, a passenger, a radio ad, carrying perfectly valid commands that the system must not execute. ' +
         'In every one of these cases the error does not produce a wrong label. It produces a wrong action.',
@@ -265,7 +303,7 @@ const chartBase = {
   {
     const s = content({
       tag: 'Motivation', title: 'Existing benchmarks each cover part of the problem',
-      notes: '[2:30] Existing resources cover pieces of this. Text function-calling benchmarks such as BFCL define the executable formalism, but have no audio. ' +
+      notes: '[3:00] Existing resources cover pieces of this. Text function-calling benchmarks such as BFCL define the executable formalism, but have no audio. ' +
         'Classic SLU corpora, SLURP, STOP, MAC-SLU, are spoken, but they label intents and slots rather than executable calls. ' +
         'Recent audio tool-use sets, BFCL-Audio, VoiceAgentBench, MFCL, bring speech and executable calls together, but they are narrow in domain and acoustic conditions, and they do not tell you why a model fails. ' +
         'We wanted all five columns at once, and we wanted the benchmark to be diagnostic: to isolate failure modes rather than report one aggregate number.',
@@ -300,7 +338,7 @@ const chartBase = {
   {
     const s = content({
       tag: 'Benchmark', title: 'Audio2Tool at a glance',
-      notes: '[3:30] So here is Audio2Tool in numbers. Roughly thirty thousand queries, each with a gold tool call, over 152 tools in 23 categories across three domains: smart car, smart home and wearables. ' +
+      notes: '[4:00] So here is Audio2Tool in numbers. Roughly thirty thousand queries, each with a gold tool call, over 152 tools in 23 categories across three domains: smart car, smart home and wearables. ' +
         'Eight complexity tiers. 330 cloned voices produced by two zero-shot TTS engines, mixed with real in-car and indoor noise. ' +
         'To our knowledge this is the first speech-to-tool benchmark with this combination of domain breadth, acoustic diversity and tiered complexity. Samples are at audio2tool.github.io.',
     });
@@ -331,7 +369,7 @@ const chartBase = {
   {
     const s = content({
       tag: 'Benchmark', title: 'Taxonomy grounded in real APIs: 3 domains, 23 categories, 152 tools',
-      notes: '[4:15] The taxonomy is grounded in real, public APIs: Android Automotive functionality, smart-home device standards, wearable SDKs. ' +
+      notes: '[4:45] The taxonomy is grounded in real, public APIs: Android Automotive functionality, smart-home device standards, wearable SDKs. ' +
         'Smart Car is the largest domain with 14 categories, from climate and driving dynamics to charging and maintenance, because hands-free in-cabin use is where mistakes are most costly. ' +
         'Two design rules. First, operational intent: we separate state-altering commands like "set temperature" from passive monitoring like "check battery". ' +
         'Second, domain specificity: device-specific categories such as driving dynamics or activity tracking are kept, not flattened. ' +
@@ -367,7 +405,7 @@ const chartBase = {
   {
     const s = content({
       tag: 'Benchmark', title: 'Eight tiers, eight failure modes',
-      notes: '[5:15] Queries are organised into eight tiers, and each tier isolates a failure mode. ' +
+      notes: '[5:45] Queries are organised into eight tiers, and each tier isolates a failure mode. ' +
         'Tiers 1 and 2 test the basics: pick the right tool, extract explicit parameters. ' +
         'Tiers 3 and 4 test composition and pragmatic inference; "I am freezing" contains no tool name at all. ' +
         'Tiers 5 to 8 test realism: an intent buried in 25 to 60 words of rambling, mid-utterance corrections, multi-turn USER/AGENT dialogue with persistent state, ' +
@@ -407,7 +445,7 @@ const chartBase = {
   {
     const s = content({
       tag: 'Benchmark', title: 'From taxonomy to ~30K verified queries',
-      notes: '[6:30] How were the queries built? Tier-specific prompts over the 152-tool taxonomy, using three frontier LLMs: GPT-5.2, Gemini 2.5 Pro and Claude Opus. ' +
+      notes: '[7:00] How were the queries built? Tier-specific prompts over the 152-tool taxonomy, using three frontier LLMs: GPT-5.2, Gemini 2.5 Pro and Claude Opus. ' +
         'A disjoint set of judge models, GPT-5.1 and Gemini 2.5 Pro, scored every query for correctness, difficulty and variability, and every query a judge flagged was manually checked, including its ground-truth tool call. ' +
         'On the right you see the distribution. Tiers 3 to 7 have 4,560 queries each. Tier 2 is the largest, 5,800, because parameter coverage needs volume. Tier 8 has 1,000. ' +
         'Within Tier 3, 62% of queries need two calls, 36% need three, and a small tail needs four or five.',
@@ -448,7 +486,7 @@ const chartBase = {
   {
     const s = content({
       tag: 'Benchmark', title: 'Making it sound real: 330 cloned voices, real noise',
-      notes: '[7:15] For the audio, we clone 330 voices selected from a pool of almost 60,000 speakers across four public corpora covering the US, Europe, Asia and Latin America. ' +
+      notes: '[7:30] For the audio, we clone 330 voices selected from a pool of almost 60,000 speakers across four public corpora covering the US, Europe, Asia and Latin America. ' +
         'Selection is stratified by region, then farthest-point sampling on speaker embeddings, so we keep maximal accent diversity while controlling benchmark size. ' +
         'Two zero-shot voice-cloning TTS engines, Qwen3-TTS and CosyVoice-3, render each query in several voices, and we mix in automotive and indoor noise: engine, road, wind, HVAC, rain, turn signals, cabin and room sounds. ' +
         'Synthetic speech is a limitation we state openly, and real recordings are the next step; but this is, to our knowledge, the broadest accent and acoustic coverage in a speech tool-calling benchmark.',

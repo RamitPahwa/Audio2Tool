@@ -6,8 +6,10 @@ Materials for the oral presentation of
 
 | File | What it is |
 |---|---|
-| `Audio2Tool_Interspeech2026_Oral.pptx` | The deck: 16 talk slides + 4 backup slides, 16:9, speaker notes on every slide |
+| `Audio2Tool_Interspeech2026_Oral.pptx` | The deck: 17 talk slides + 4 backup slides, 16:9, speaker notes on every slide |
+| `Audio2Tool_Interspeech2026_Oral.pdf` | PDF export of the deck (backup copy for the Speaker Preparation Room) |
 | `talk_script.md` | Timed speaking script (≈14 min), Q&A preparation, rehearsal checklist |
+| `reference_talks.md` | Recordings and slide decks from past Interspeech orals, the patterns they share, and how this deck maps onto them |
 | `src/build_deck.js` | Generator script (pptxgenjs). Every number is typed in from the paper, so edits are reproducible |
 | `src/assets/` | Figure crops from the paper PDF (Fig. 1, 2c, 3, Table 3) and the QR code for audio2tool.github.io |
 
@@ -31,7 +33,7 @@ dependence on internet access or online slides. This deck follows that: system f
 ## Pre-conference checklist
 
 - [ ] Look up session day/time/room in the Preliminary Program; rename the file `Day_Time_Room_RamitPahwa_v1.pptx`.
-- [ ] Optional: drop 2–3 short audio samples (Tier 6 correction, Tier 8 intent blending, one −5 dB noisy clip) onto slides 7 and 14 as embedded media (`Insert → Audio → Audio on My PC`, set "Play in Click Sequence"). The room has audio playback.
+- [ ] Optional: drop 2–3 short audio samples (Tier 6 correction, Tier 8 intent blending, one −5 dB noisy clip) onto slides 8 and 15 as embedded media (`Insert → Audio → Audio on My PC`, set "Play in Click Sequence"). The room has audio playback.
 - [ ] Open the file in PowerPoint on Windows once; confirm charts, fonts and the notes pane look right.
 - [ ] Upload via ShareFile; re-upload as `_v2` after any change.
 - [ ] Onsite: Speaker Preparation Room ≥ 3 h before the session; also carry the file on USB.
