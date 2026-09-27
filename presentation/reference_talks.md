@@ -66,7 +66,7 @@ Closest in genre to Audio2Tool (dataset / benchmark / SLU papers), all verified 
 | **One metric, one chart per results slide** (Zhao: MOS, preference, accentedness on three slides). | Findings 1–4 are each one chart plus one message. |
 | **Explicit "messages" slide, then a "pointers/resources" slide; closing slide carries QR codes** (Wang 2024 has three). | Takeaways slide + closing slide with one QR. Consider a second QR for the arXiv PDF. |
 | **Appendix slides for Q&A** (6–16 in the Wang decks). | 4 backups: full Table 3, ASR tax, SLU comparison, tier generation details. |
-| **Footnote citations on the slide**, not a references slide. | Related benchmarks are named in text on slides 5 and 9; small footnote citations (BFCL, SLURP, MAC-SLU, VoiceAgentBench, MS-SNSD) would match the idiom. |
+| **Footnote citations on the slide**, not a references slide. | Bracketed citation numbers now sit next to every benchmark, corpus, model and noise-set name (slides 5, 10, 11, 15, 20, 21), and slide 22 resolves them in the paper's numbering. |
 | **Audio samples or a demo page are standard for speech talks** (Zhao: demo page; Wang 2020: samples page). | audio2tool.github.io on slides 6 and 17; embedding 2–3 clips (Tier 6, Tier 8, −5 dB) would be the strongest single upgrade. |
 | **Length:** 15-minute orals run 15–20 content slides (Zhao 17; Wang ~30 with builds ≈ 15 ideas). | 17 talk slides + 4 backups. |
 | **Institution logo on the title slide; small footer with conference name and slide number** (all decks). | Footer and slide number present. Add the Rivian and Volkswagen Group Technologies logo on slide 1 if brand guidelines allow (asset not available in this environment). |

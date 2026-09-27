@@ -315,20 +315,20 @@ const chartBase = {
     const rowLabel = (a, b) => ({ text: [{ text: a, options: { bold: true, breakLine: true, fontSize: 14 } }, { text: b, options: { fontSize: 11.5, color: C.muted } }], options: { align: 'left', fill: { color: C.paper } } });
     const rows = [
       [hdr(''), hdr('Speech input'), hdr('Executable tool calls'), hdr('Multi-intent & multi-turn'), hdr('Accent & noise diversity'), hdr('Diagnostic complexity tiers')],
-      [rowLabel('Text function calling', 'BFCL, ComplexFuncBench'), N('No'), Y('Yes'), Y('Yes'), N('No'), L('Limited')],
-      [rowLabel('Spoken language understanding', 'SLURP, STOP, MAC-SLU'), Y('Yes'), N('No  (intents + slots)'), L('Limited'), L('Limited'), N('No')],
-      [rowLabel('Audio tool use', 'BFCL-Audio, VoiceAgentBench, MFCL'), Y('Yes'), Y('Yes'), L('Limited'), L('Limited'), N('No')],
+      [rowLabel('Text function calling', 'BFCL [3], ComplexFuncBench [2]'), N('No'), Y('Yes'), Y('Yes'), N('No'), L('Limited')],
+      [rowLabel('Spoken language understanding', 'SLURP [7], STOP [8], MAC-SLU [9]'), Y('Yes'), N('No  (intents + slots)'), L('Limited'), L('Limited'), N('No')],
+      [rowLabel('Audio tool use', 'BFCL-Audio [10], VoiceAgentBench [5], MFCL [11]'), Y('Yes'), Y('Yes'), L('Limited'), L('Limited'), N('No')],
       [{ text: [{ text: 'Audio2Tool', options: { bold: true, breakLine: true, fontSize: 15, color: C.speakDark } }, { text: 'this work', options: { fontSize: 11.5, color: C.muted } }], options: { align: 'left', fill: { color: C.paper } } },
         Y('Yes'), Y('Yes'), Y('Yes  (8 tiers)'), Y('Yes  (330 voices, noise)'), Y('Yes')],
     ];
     s.addTable(rows, {
-      x: 0.6, y: 1.78, w: 12.13, colW: [3.33, 1.6, 1.9, 1.9, 1.7, 1.7], rowH: [0.55, 0.78, 0.78, 0.78, 0.78],
+      x: 0.6, y: 1.78, w: 12.13, colW: [3.65, 1.5, 1.85, 1.85, 1.64, 1.64], rowH: [0.55, 0.78, 0.78, 0.78, 0.78],
       fontFace: FONT, fontSize: 13, color: C.ink, align: 'center', valign: 'middle',
       border: { type: 'solid', pt: 0.75, color: C.line }, margin: [0.05, 0.1, 0.05, 0.1],
     });
     runs(s, [
       { text: 'Complementary, not competing. ', options: { bold: true } },
-      { text: 'Audio2Tool keeps the executable-call formalism of BFCL, but makes the input spoken, acoustically diverse, and organised so each tier isolates a distinct failure mode.' },
+      { text: 'Audio2Tool keeps the executable-call formalism of BFCL [3], but makes the input spoken, acoustically diverse, and organised so each tier isolates a distinct failure mode.' },
     ], { x: 0.6, y: 5.85, w: 12.1, h: 0.9, fontSize: 16, color: C.ink2, valign: 'middle' });
   }
 
@@ -493,9 +493,9 @@ const chartBase = {
     });
     // left flow (vertical)
     const steps = [
-      [I.users, C.speak, 'Speaker pool: ~60K voices, 4 corpora', 'SPGISpeech 2.0 · Emilia-YODAS · 3D-Speaker · VoxPopuli'],
+      [I.users, C.speak, 'Speaker pool: ~60K voices, 4 corpora', 'SPGISpeech 2.0 [15] · Emilia-YODAS [16] · 3D-Speaker [17] · VoxPopuli [18]'],
       [I.filter, C.speak, 'Stratified + farthest-point sampling', 'on speaker embeddings → 330 speakers, US · Europe · Asia · Latin America'],
-      [I.wave, C.call, 'Zero-shot voice-cloning TTS', 'Qwen3-TTS and CosyVoice-3 render every query in m sampled voices'],
+      [I.wave, C.call, 'Zero-shot voice-cloning TTS', 'Qwen3-TTS [19] and CosyVoice-3 [20] render every query in m sampled voices'],
       [I.noise, C.act, 'Noise mixing', 'engine · road · wind · HVAC · rain · turn signal · cabin · room'],
     ];
     const y0 = 1.75, hh = 1.05, gap = 0.16;
@@ -512,13 +512,13 @@ const chartBase = {
     const hdr = (t) => ({ text: t, options: { bold: true, color: C.white, fill: { color: C.ink } } });
     const rows = [
       [hdr('Corpus'), hdr('Speakers'), hdr('Regions'), hdr('Selected')],
-      ['SPGISpeech 2.0', '41,593', 'US, Asia, Latin America', '100'],
-      ['Emilia-YODAS', '7,092', 'US, China', '100'],
-      ['3D-Speaker', '10,000', 'China', '30'],
-      ['VoxPopuli', '1,180', 'US, Europe', '100'],
+      ['SPGISpeech 2.0 [15]', '41,593', 'US, Asia, LatAm', '100'],
+      ['Emilia-YODAS [16]', '7,092', 'US, China', '100'],
+      ['3D-Speaker [17]', '10,000', 'China', '30'],
+      ['VoxPopuli [18]', '1,180', 'US, Europe', '100'],
       [{ text: 'Total', options: { bold: true } }, { text: '59,865', options: { bold: true } }, { text: '4 regions', options: { bold: true } }, { text: '330', options: { bold: true, color: C.speakDark } }],
     ];
-    s.addTable(rows, { x: 7.25, y: 2.1, w: 5.48, colW: [1.55, 1.15, 1.83, 0.95], rowH: 0.42, fontFace: FONT, fontSize: 12.5, color: C.ink, align: 'left', valign: 'middle', border: { type: 'solid', pt: 0.75, color: C.line }, margin: [0.03, 0.08, 0.03, 0.08] });
+    s.addTable(rows, { x: 7.25, y: 2.1, w: 5.48, colW: [1.85, 1.0, 1.68, 0.95], rowH: 0.42, fontFace: FONT, fontSize: 12.5, color: C.ink, align: 'left', valign: 'middle', border: { type: 'solid', pt: 0.75, color: C.line }, margin: [0.03, 0.08, 0.03, 0.08] });
     card(s, 7.25, 4.85, 5.48, 1.85, C.tint, { line: C.line });
     text(s, 'Algorithm 1, in one line', { x: 7.45, y: 4.95, w: 5.1, h: 0.35, fontSize: 13, bold: true, color: C.muted });
     text(s, 'S ← FPS({f(s)}, K)\nfor q in Q:  for s in sample(S, m):\n    ã ← Mix(TTS(q, s), n),  n ~ N', { x: 7.45, y: 5.3, w: 5.1, h: 0.9, fontFace: MONO, fontSize: 12, color: C.ink2 });
@@ -540,13 +540,13 @@ const chartBase = {
     card(s, 0.6, 1.75, 6.1, 2.35, C.tint);
     iconCircle(s, 0.85, 2.0, 0.6, C.speak, I.robot);
     text(s, 'End-to-end SpeechLMs  ·  audio → tool call', { x: 1.6, y: 2.02, w: 5.05, h: 0.5, fontSize: 15, bold: true, valign: 'middle' });
-    text(s, 'Qwen3-Omni-30B  ·  Qwen2.5-Omni-7B  ·  Kimi-Audio-7B\nStep-Audio-2-7B  ·  Audio-Flamingo-3-8B', { x: 0.9, y: 2.65, w: 5.6, h: 0.75, fontSize: 13.5, color: C.ink2, lineSpacingMultiple: 1.15 });
+    text(s, 'Qwen3-Omni-30B [24]  ·  Qwen2.5-Omni-7B [24]  ·  Kimi-Audio-7B [23]\nStep-Audio-2-7B [21]  ·  Audio-Flamingo-3-8B [22]', { x: 0.9, y: 2.65, w: 5.6, h: 0.75, fontSize: 13.5, color: C.ink2, lineSpacingMultiple: 1.15 });
     text(s, 'Open weights only · 7B to 30B · zero-shot with tool definitions in the prompt', { x: 0.9, y: 3.45, w: 5.6, h: 0.5, fontSize: 12, italic: true, color: C.muted });
 
     card(s, 0.6, 4.25, 6.1, 2.45, C.tint);
     iconCircle(s, 0.85, 4.5, 0.6, C.act, I.cogs);
-    text(s, 'Cascaded  ·  audio → Whisper-v3 → text LLM', { x: 1.6, y: 4.52, w: 5.05, h: 0.5, fontSize: 15, bold: true, valign: 'middle' });
-    text(s, 'Qwen3 1.7B / 4B / 8B  ·  Gemma-3 12B / 27B', { x: 0.9, y: 5.12, w: 5.6, h: 0.4, fontSize: 13.5, color: C.ink2 });
+    text(s, 'Cascaded  ·  audio → Whisper-v3 [25] → text LLM', { x: 1.6, y: 4.52, w: 5.05, h: 0.5, fontSize: 15, bold: true, valign: 'middle' });
+    text(s, 'Qwen3 1.7B / 4B / 8B [26]  ·  Gemma-3 12B / 27B [27]', { x: 0.9, y: 5.12, w: 5.6, h: 0.4, fontSize: 13.5, color: C.ink2 });
     runs(s, [{ text: '+ Oracle transcript: ', options: { bold: true, color: C.actDark } }, { text: 'gold text → same LLMs. Upper bound that isolates ASR damage.', options: { color: C.ink2 } }], { x: 0.9, y: 5.55, w: 5.6, h: 0.5, fontSize: 13.5 });
     text(s, 'Tier 8 (intent blending) is audio-only and is not scored for text/oracle systems.', { x: 0.9, y: 6.15, w: 5.6, h: 0.5, fontSize: 12, italic: true, color: C.muted });
 
@@ -687,7 +687,7 @@ const chartBase = {
     s.addImage({ path: path.join(ASSETS, 'fig3_right.png'), x: 0.6, y: 1.75, w: 5.5, h: 4.86 });
     text(s, 'Intent-classification F1 vs. noise level (paper Fig. 3, right). Error bars: std. over noise types.', { x: 0.6, y: 6.62, w: 5.6, h: 0.4, fontSize: 11, italic: true, color: C.muted });
     const pts = [
-      [I.noise, C.act, '3 noise families × 3 SNR levels', 'Babble, mechanical hum, impulsive (MS-SNSD) at +15, +5 and −5 dB'],
+      [I.noise, C.act, '3 noise families × 3 SNR levels', 'Babble, mechanical hum, impulsive (MS-SNSD [28]) at +15, +5 and −5 dB'],
       [I.chart, C.act, 'Monotonic degradation for everyone', 'F1 falls steadily from low to high noise for every system tested'],
       [I.cogs, C.act, 'Cascades compound ASR errors', 'Whisper + Gemma-3-12B loses the most; Qwen3-Omni-30B is the most robust'],
       [I.db, C.speak, 'So noise is in the benchmark', 'Multiple noise types and levels are part of the released data, not just this ablation'],
@@ -825,13 +825,13 @@ const chartBase = {
     const hdr = (t) => ({ text: t, options: { bold: true, color: C.white, fill: { color: C.ink } } });
     const rows = [
       [hdr('Dataset'), hdr('Domains'), hdr('Intents / tools'), hdr('Slots / parameters'), hdr('Multi-intent'), hdr('Output')],
-      ['ATIS', '1', '16', '41', 'No', 'intent + slots'],
-      ['SNIPS', '2', '7', '4', 'No', 'intent + slots'],
+      ['ATIS [6]', '1', '16', '41', 'No', 'intent + slots'],
+      ['SNIPS [12]', '2', '7', '4', 'No', 'intent + slots'],
       ['FSC', '2', '6', '2', 'No', 'intent + slots'],
-      ['SLURP', '18', '46', '56', 'No', 'intent + slots'],
-      ['MixATIS', '1', '16', '41', 'Yes', 'intent + slots'],
-      ['MixSNIPS', '2', '7', '4', 'Yes', 'intent + slots'],
-      ['MAC-SLU', '8', '81', '192', 'Yes', 'intent + slots'],
+      ['SLURP [7]', '18', '46', '56', 'No', 'intent + slots'],
+      ['MixATIS [13]', '1', '16', '41', 'Yes', 'intent + slots'],
+      ['MixSNIPS [14]', '2', '7', '4', 'Yes', 'intent + slots'],
+      ['MAC-SLU [9]', '8', '81', '192', 'Yes', 'intent + slots'],
       [{ text: 'Audio2Tool', options: { bold: true, color: C.speakDark } }, { text: '3', options: { bold: true } }, { text: '152', options: { bold: true } }, { text: '22', options: { bold: true } }, { text: 'Yes', options: { bold: true } }, { text: 'executable tool call(s)', options: { bold: true, color: C.speakDark } }],
     ];
     s.addTable(rows, { x: 0.6, y: 1.75, w: 12.13, colW: [2.4, 1.6, 2.0, 2.2, 1.6, 2.33], rowH: 0.48, fontFace: FONT, fontSize: 14, color: C.ink, align: 'center', valign: 'middle', border: { type: 'solid', pt: 0.75, color: C.line } });
@@ -852,7 +852,7 @@ const chartBase = {
       ['Generators', 'GPT-5.2 · Gemini 2.5 Pro · Claude Opus'],
       ['Judges (disjoint)', 'GPT-5.1 · Gemini 2.5 Pro: correctness, difficulty, variability'],
       ['Verification', 'manual check of every judge-flagged query and its gold tools'],
-      ['TTS', 'Qwen3-TTS · CosyVoice-3, zero-shot voice cloning; noise mixed per Algorithm 1'],
+      ['TTS', 'Qwen3-TTS [19] · CosyVoice-3 [20], zero-shot voice cloning; noise mixed per Algorithm 1'],
     ];
     facts.forEach(([h, b], i) => {
       const x = 0.6 + (i % 2) * 6.15, y = 4.85 + Math.floor(i / 2) * 0.85;
@@ -914,7 +914,7 @@ const chartBase = {
     };
     col(REFS.slice(0, 14), 0.6);
     col(REFS.slice(14), 6.75);
-    text(s, 'Full bibliography in the paper: arXiv:2604.22821', { x: 0.6, y: 6.78, w: 12.1, h: 0.28, fontSize: 10, italic: true, color: C.muted });
+    text(s, 'Numbers match the bracketed citations on the earlier slides and in the paper (arXiv:2604.22821).', { x: 0.6, y: 6.78, w: 12.1, h: 0.28, fontSize: 10, italic: true, color: C.muted });
   }
 
   await pres.writeFile({ fileName: OUT });
