@@ -94,7 +94,7 @@ Data, benchmark code and audio samples are at audio2tool.github.io; the QR code 
 
 ## Q&A preparation
 
-Reviewer concerns from the Interspeech reviews, plus the questions this talk invites. Backup slides: **18** full Table 3, **19** ASR tax, **20** SLU comparison, **21** tier generation details.
+Reviewer concerns from the Interspeech reviews, plus the questions this talk invites. Backup slides: **18** full Table 3, **19** ASR tax, **20** SLU comparison, **21** tier generation details. Slide **22** lists the paper's references in the paper's numbering; jump to it if a questioner asks "which benchmark was that?".
 
 **"It's all synthetic speech. How realistic is this?"**
 Acknowledged as a limitation (Section 6). We maximised realism with zero-shot voice cloning from *real* speakers (330 voices from SPGISpeech 2.0, Emilia-YODAS, 3D-Speaker, VoxPopuli), stratified + farthest-point sampling for accent coverage, two TTS engines, and real recorded noise at controlled SNRs. The tiers, taxonomy and evaluation harness are TTS-agnostic, so real recordings drop in without changing the benchmark. That is the next release.

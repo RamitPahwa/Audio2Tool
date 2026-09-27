@@ -861,6 +861,62 @@ const chartBase = {
     });
   }
 
+  // =====================================================================
+  // REFERENCES (numbering follows the paper's bibliography)
+  // =====================================================================
+  {
+    const s = content({
+      tag: 'References', tagColor: C.muted, title: 'References',
+      notes: 'References cited in the paper, in the paper\'s numbering. Not spoken; here for the audience and for Q&A.',
+    });
+    // [n, authors, title, venue] — venue kept short; arXiv ids given where the paper gives them
+    const REFS = [
+      [1, 'Chen, Yue, Zhang, Gao, Tan, Li', 'VoiceBench: Benchmarking LLM-based voice assistants', 'arXiv:2410.17196, 2024'],
+      [2, 'Zhong, Du, Zhang, Hu, Tang', 'ComplexFuncBench: Multi-step and constrained function calling under long-context scenario', 'arXiv:2501.10132, 2025'],
+      [3, 'Patil, Mao, Yan, Ji, Suresh, Stoica, Gonzalez', 'The Berkeley Function Calling Leaderboard (BFCL): From tool use to agentic evaluation of LLMs', 'ICML 2025'],
+      [4, 'Wang, Zou, Lin, Sun, Liu, Zhang, Liu, Aw, Chen', 'AudioBench: A universal benchmark for audio large language models', 'NAACL 2025'],
+      [5, 'Jain, Shukla, Rajeev, Kulkarni, Khatri, Agarwal', 'VoiceAgentBench: Are voice assistants ready for agentic tasks?', 'arXiv:2510.07978, 2025'],
+      [6, 'Hemphill, Godfrey, Doddington', 'The ATIS spoken language systems pilot corpus', 'Workshop on Speech and Natural Language, 1990'],
+      [7, 'Bastianelli et al.', 'SLURP: A spoken language understanding resource package', 'EMNLP 2020'],
+      [8, 'Tomasello, Shrivastava, Lazar, et al.', 'STOP: A dataset for spoken task oriented semantic parsing', 'arXiv:2207.10643, 2022'],
+      [9, 'Peng, Cai, Liu, et al.', 'MAC-SLU: Multi-intent automotive cabin spoken language understanding benchmark', 'arXiv:2512.01603, 2025'],
+      [10, 'Mao, Ginart, Emmons', 'BFCL Audio: A benchmark for audio-native function calling', 'Salesforce AI Research blog, 2025'],
+      [11, 'Mao, Patil, Gonzalez', 'MFCL: A multi-modal function calling evaluation for large language models', 'OpenReview, 2025'],
+      [12, 'Coucke, Saade, Ball, et al.', 'Snips voice platform: An embedded SLU system for private-by-design voice interfaces', 'EMNLP 2018'],
+      [13, 'Nguyen, Hoang, Tu, Ngo', 'Joint multiple intent detection and slot filling with supervised contrastive learning and self-distillation', 'arXiv:2308.14654, 2023'],
+      [14, 'Qin, Xu, Che, Liu', 'AGIF: An adaptive graph-interactive framework for joint multiple intent detection and slot filling', 'Findings of EMNLP 2020'],
+      [15, 'Grossman, Park, Dhawan, et al.', 'SPGISpeech 2.0: Transcribed multi-speaker financial audio for speaker-tagged transcription', 'arXiv:2508.05554, 2025'],
+      [16, 'Shao', 'YodasSpeakerPool: A richly-annotated multi-speaker dataset for voice cloning (built from Emilia-YODAS)', 'GitHub, 2026'],
+      [17, 'Zheng, Cheng, Chen, Wang, Chen', '3D-Speaker: A large-scale multi-device, multi-distance, and multi-dialect corpus', 'arXiv:2306.15354, 2023'],
+      [18, 'Wang, Riviere, Lee, et al.', 'VoxPopuli: A large-scale multilingual speech corpus for representation learning', 'ACL-IJCNLP 2021'],
+      [19, 'Hu, Zhu, He, et al.', 'Qwen3-TTS technical report', 'arXiv:2601.15621, 2026'],
+      [20, 'Du, Gao, Wang, et al.', 'CosyVoice 3: Towards in-the-wild speech generation via scaling-up and post-training', 'arXiv:2505.17589, 2025'],
+      [21, 'Wu, Yan, Hu, et al.', 'Step-Audio 2 technical report', 'arXiv:2507.16632, 2025'],
+      [22, 'Goel, Ghosh, Kim, et al.', 'Audio Flamingo 3: Advancing audio intelligence with fully open large audio language models', 'arXiv:2507.08128, 2025'],
+      [23, 'Ding, Ju, Leng, et al.', 'Kimi-Audio technical report', 'arXiv:2504.18425, 2025'],
+      [24, 'Xu, Guo, Hu, et al.', 'Qwen3-Omni technical report', 'arXiv:2509.17765, 2025'],
+      [25, 'Radford, Kim, Xu, Brockman, McLeavey, Sutskever', 'Robust speech recognition via large-scale weak supervision (Whisper)', 'ICML 2023'],
+      [26, 'Yang, Li, Yang, et al.', 'Qwen3 technical report', 'arXiv:2505.09388, 2025'],
+      [27, 'Kamath, Ferret, Pathak, et al.', 'Gemma 3 technical report', 'arXiv:2503.19786, 2025'],
+      [28, 'Reddy, Beyrami, Pool, Cutler, Srinivasan, Gehrke', 'A scalable noisy speech dataset and online subjective test framework (MS-SNSD)', 'arXiv:1909.08050, 2019'],
+    ];
+    const col = (items, x) => {
+      const paras = [];
+      items.forEach(([n, a, t, v], i) => {
+        const last = i === items.length - 1;
+        const end = (str) => /[.?!]$/.test(str) ? `${str} ` : `${str}. `;  // avoid "et al.." and "tasks?."
+        paras.push({ text: `[${n}]  `, options: { bold: true, color: C.speakDark } });
+        paras.push({ text: end(a), options: { color: C.ink2 } });
+        paras.push({ text: end(t), options: { color: C.ink } });
+        paras.push({ text: v, options: { color: C.muted, italic: true, breakLine: !last } });
+      });
+      runs(s, paras, { x, y: 1.6, w: 5.98, h: 5.35, fontSize: 9.5, lineSpacingMultiple: 1.05, paraSpaceAfter: 3 });
+    };
+    col(REFS.slice(0, 14), 0.6);
+    col(REFS.slice(14), 6.75);
+    text(s, 'Full bibliography in the paper: arXiv:2604.22821', { x: 0.6, y: 6.78, w: 12.1, h: 0.28, fontSize: 10, italic: true, color: C.muted });
+  }
+
   await pres.writeFile({ fileName: OUT });
   console.log('wrote', OUT, 'slides:', slideNo);
 })().catch(e => { console.error(e); process.exit(1); });

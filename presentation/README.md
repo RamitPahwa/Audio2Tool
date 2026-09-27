@@ -6,7 +6,7 @@ Materials for the oral presentation of
 
 | File | What it is |
 |---|---|
-| `Audio2Tool_Interspeech2026_Oral.pptx` | The deck: 17 talk slides + 4 backup slides, 16:9, speaker notes on every slide |
+| `Audio2Tool_Interspeech2026_Oral.pptx` | The deck: 17 talk slides + 4 backup slides + a references slide, 16:9, speaker notes on every slide |
 | `Audio2Tool_Interspeech2026_Oral.pdf` | PDF export of the deck (backup copy for the Speaker Preparation Room) |
 | `talk_script.md` | Timed speaking script (≈14 min), Q&A preparation, rehearsal checklist |
 | `reference_talks.md` | Recordings and slide decks from past Interspeech orals, the patterns they share, and how this deck maps onto them |
