@@ -5,7 +5,26 @@ so it is near the top of feeds in Europe and the US when the talk happens. Add t
 
 ---
 
-## Main post
+## Compact post (recommended)
+
+Presenting Audio2Tool at Interspeech 2026 this Tuesday: a benchmark for going straight from speech to an executable tool call.
+
+📍 Oral · Tue 29 Sep · 17:10 · ICC Sydney
+
+~30K spoken queries · 152 tools across car, home and wearables · 8 complexity tiers · 330 cloned voices · real in-car noise
+
+What we found: SpeechLMs pick the right tool 92% of the time on direct commands, but get every argument right less than 16% of the time, even with perfect transcripts. The bottleneck is argument grounding, not ASR. And end-to-end models do not yet beat a strong Whisper + LLM cascade.
+
+📄 arxiv.org/abs/2604.22821
+🔊 audio2tool.github.io
+
+With Apoorva Beedu, Parivesh Priye, Rutu Gandhi, Saloni Takawale, Aruna Baijal and Zengli Yang at Rivian and Volkswagen Group Technologies. Come say hello if you are in Sydney.
+
+#Interspeech2026 #SpeechAI #VoiceAssistants #ToolCalling
+
+---
+
+## Long version
 
 On Tuesday at Interspeech 2026 in Sydney I will be presenting Audio2Tool, our benchmark for going straight from speech to an executable tool call. If you work on voice assistants, speech LLMs or in-car voice, come and say hello.
 
